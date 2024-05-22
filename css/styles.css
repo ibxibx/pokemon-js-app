@@ -1,0 +1,9 @@
+/* Styles */
+
+:root {
+    --font-family_1: Sora, sans-serif;
+    --font-family_2: 'Roboto Flex', roboto-flex;
+  }
+  
+  h1 {font-family: var(--font-family_1);
+  }

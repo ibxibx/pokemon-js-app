@@ -19,7 +19,7 @@ body {
 
 .header {
   background-color: #a040a0;
-  padding: 10px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,8 +27,10 @@ body {
 }
 
 .header img {
+  height: 40px; /* Adjust the logo height to fit within the 50px stripe with padding */
+  padding: 5px;
   position: absolute;
-  left: 10px;
+  left: 5px;
   top: 50%;
   transform: translateY(-50%);
 }

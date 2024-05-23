@@ -19,7 +19,7 @@ body {
 
 .header {
   background-color: #a040a0;
-  height: 80px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@ body {
 .main-container {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 50px);
 }
 
 .sidebar {
@@ -103,7 +103,8 @@ body {
   }
 
   .header img {
-      width: 100px; /* Adjust the size of the logo if necessary */
+      width: auto;
+      height: 40px; /* Maintain the height adjustment */
       left: 5px;
   }
 

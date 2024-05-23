@@ -1,87 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokémon Viewer</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --font-family_2: 'Roboto Flex', roboto-flex;
-        }
-
-        body {
-            font-family: var(--font-family_2);
-            margin: 0;
-        }
-
-        .header {
-            background-color: #a040a0;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .header img {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .main-container {
-            display: flex;
-            height: calc(100vh - 60px);
-        }
-
-        .sidebar {
-            width: 30%;
-            padding: 20px;
-            background-color: #f4f4f4;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-        }
-
-        .content {
-            width: 70%;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .pokemon-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .pokemon-list li {
-            cursor: pointer;
-            padding: 5px 0;
-        }
-
-        .pokemon-list li:hover {
-            text-decoration: underline;
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-
-        .pokemon-details img {
-            max-width: 100%;
-        }
-
-        .pokemon-details {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <header class="header">
         <img src="img/pokedex-logo.png" alt="Pokedex Logo">
@@ -94,12 +19,11 @@
         <div class="content">
             <div class="pokemon-details" id="pokemonDetails">
                 <h2 id="pokemonName"></h2>
-                <img id="pokemonImage" src="#" alt="#">
+                <img id="pokemonImage" src="" alt="">
                 <p id="pokemonDescription"></p>
             </div>
         </div>
     </div>
     <script src="scripts.js"></script>
 </body>
-
 </html>

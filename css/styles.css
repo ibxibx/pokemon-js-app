@@ -1,9 +1,123 @@
 /* Styles */
+/* Color Palette */
+/*
+primary-color: #eeeeee;       // Light Gray
+secondary-color: #a040a0;     // Violet
+text-primary-color: #333333;  // Black
+text-secondary-color: #666666;// Dark Gray
+ 
+*/
 
 :root {
-    --font-family_1: Sora, sans-serif;
-    --font-family_2: 'Roboto Flex', roboto-flex;
+  --font-family_2: 'Roboto Flex', roboto-flex;
+}
+
+body {
+  font-family: var(--font-family_2);
+  margin: 0;
+}
+
+.header {
+  background-color: #a040a0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.header img {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 60px);
+}
+
+.sidebar {
+  width: 30%;
+  padding: 20px;
+  background-color: #f4f4f4;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.content {
+  width: 70%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.pokemon-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pokemon-list li {
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.pokemon-list li:hover {
+  text-decoration: underline;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.pokemon-details img {
+  max-width: 100%;
+}
+
+.pokemon-details {
+  display: none;
+}
+
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .main-container {
+      flex-direction: column;
   }
-  
-  h1 {font-family: var(--font-family_1);
+
+  .sidebar, .content {
+      width: 100%;
+      height: auto;
   }
+}
+
+/* Media query for small mobile screens */
+@media (max-width: 480px) {
+  .header {
+      padding: 5px;
+  }
+
+  .header img {
+      width: 100px; /* Adjust the size of the logo if necessary */
+      left: 5px;
+  }
+
+  .sidebar {
+      padding: 10px;
+  }
+
+  .content {
+      padding: 10px;
+  }
+
+  .search-bar {
+      padding: 5px;
+  }
+
+  .pokemon-list li {
+      padding: 3px 0;
+  }
+}

@@ -45,14 +45,14 @@ displayPokemonList(pokemonList);
 // Set up the search filter
 filterPokemonList();
 
-// Iterate over each Pokémon in the pokemonList array
-for (let i = 0; i < pokemonList.length; i++) {
-    // Check if the Pokémon's height is above a certain value (e.g., 1.5 meters)
-    if (pokemonList[i].height > 1.0) {
-        // If the height is greater than 1.5, add the special note "Wow, that's big!"
-        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ") - Wow, that's big!<br>");
+// Iterate over each Pokémon in the pokemonList array using forEach
+pokemonList.forEach(pokemon => {
+    // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
+    if (pokemon.height > 1.0) {
+        // If the height is greater than 1.0, add the special note "Wow, that's big!"
+        document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big!<br>");
     } else {
         // Otherwise, just display the Pokémon's name and height
-        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")<br>");
+        document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
     }
-}
+});

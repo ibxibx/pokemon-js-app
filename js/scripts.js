@@ -17,7 +17,7 @@ let pokemonRepository = (function() {
     function add(item) {
         pokemonList.push(item);
     }
-    
+
     // Function to display the Pokémon list
     function displayPokemonList(pokemonArray) {
         const pokemonListElement = document.getElementById('pokemonList');
@@ -54,16 +54,17 @@ let pokemonRepository = (function() {
     // Set up the search filter
     filterPokemonList();
 
-    // Iterate over each Pokémon in the pokemonList array using forEach
-    pokemonList.forEach(pokemon => {
-        // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
-        if (pokemon.height > 1.0) {
-            // If the height is greater than 1.0, add the special note "Wow, that's big!"
-            document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big!<br>");
-        } else {
-            // Otherwise, just display the Pokémon's name and height
-            document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
-        }
+    // Iterate over each Pokémon in the repository using forEach and getAll functions
+pokemonRepository.getAll().forEach(pokemon => {
+    // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
+    if (pokemon.height > 1.0) {
+        // If the height is greater than 1.0, add the special note "Wow, that's big!"
+        document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big!<br>");
+    } else {
+        // Otherwise, just display the Pokémon's name and height
+        document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
+    }
+
     });
 
     // Return an object containing only the required public functions

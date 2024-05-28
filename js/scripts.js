@@ -1,4 +1,4 @@
-(function() {
+let pokemonRepository = (function() {
     // Array of Pokémon objects
     let pokemonList = [
         { name: "Azumarill", height: 0.8, types: ['fairy', 'water'], description: "Azumarill is a blue, bipedal Pokémon that has an ovoid body." },
@@ -55,4 +55,11 @@
             document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
         }
     });
+
+    // Return an object containing methods/variables accessible outside the IIFE
+    return {
+        pokemonList: pokemonList,
+        displayPokemonList: displayPokemonList,
+        filterPokemonList: filterPokemonList
+    };
 })();

@@ -18,6 +18,17 @@ let pokemonRepository = (function() {
         pokemonList.push(item);
     }
 
+    // Function to add a single item to the pokemonList array
+function add(item) {
+    // Check if the parameter is an object
+    if (typeof item === 'object') {
+        // If it's an object, push it to the pokemonList array
+        pokemonList.push(item);
+    } else {
+        // If it's not an object, log an error message
+        console.error("Error: Only objects can be added to the pokemonList.");
+    }}
+
     // Function to display the Pokémon list
     function displayPokemonList(pokemonArray) {
         const pokemonListElement = document.getElementById('pokemonList');
@@ -48,6 +59,7 @@ let pokemonRepository = (function() {
             displayPokemonList(filteredPokemon);
         });
     }
+
 
     // Initial display of the Pokémon list
     displayPokemonList(pokemonList);

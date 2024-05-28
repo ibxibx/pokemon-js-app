@@ -8,6 +8,16 @@ let pokemonRepository = (function() {
         { name: "Charmeleon", height: 1.1, types: ['fire'], description: "Charmeleon is a bipedal, reptilian Pokémon with a primarily orange body." }
     ];
 
+     // Function to return all items
+     function getAll() {
+        return pokemonList;
+    }
+
+    // Function to add a single item to the pokemonList array
+    function add(item) {
+        pokemonList.push(item);
+    }
+    
     // Function to display the Pokémon list
     function displayPokemonList(pokemonArray) {
         const pokemonListElement = document.getElementById('pokemonList');
@@ -56,10 +66,16 @@ let pokemonRepository = (function() {
         }
     });
 
+    // Return an object containing only the required public functions
     // Return an object containing methods/variables accessible outside the IIFE
     return {
+        getAll: getAll,
+        add: add,
         pokemonList: pokemonList,
         displayPokemonList: displayPokemonList,
         filterPokemonList: filterPokemonList
     };
+    
+    
+    
 })();

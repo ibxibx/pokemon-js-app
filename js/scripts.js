@@ -15,11 +15,6 @@ let pokemonRepository = (function () {
 
     // Function to add a single item to the pokemonList array
     function add(item) {
-        pokemonList.push(item);
-    }
-
-    // Function to add a single item to the pokemonList array
-    function add(item) {
         // Check if the parameter is an object
         if (typeof item === 'object') {
             // If it's an object, push it to the pokemonList array
@@ -61,32 +56,29 @@ let pokemonRepository = (function () {
         });
     }
 
-
-    // Initial display of the Pokémon list
-    displayPokemonList(pokemonList);
-    // Set up the search filter
-    filterPokemonList();
-
-    // Iterate over each Pokémon in the repository using forEach and getAll functions
-    pokemonRepository.getAll().forEach(pokemon => {
-        // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
-        if (pokemon.height > 1.0) {
-            // If the height is greater than 1.0, add the special note "Wow, that's big!"
-            document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big!<br>");
-        } else {
-            // Otherwise, just display the Pokémon's name and height
-            document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
-        }
-
-    });
-
     // Return an object containing only the required public functions
-    // Return an object containing methods/variables accessible outside the IIFE
     return {
         getAll: getAll,
         add: add,
-        pokemonList: pokemonList,
         displayPokemonList: displayPokemonList,
-        filterPokemonList: filterPokemonList
+        filterPokemonList: filterPokemonList,
+        displayPokemonDetails: displayPokemonDetails
     };
 })();
+
+// Initial display of the Pokémon list
+pokemonRepository.displayPokemonList(pokemonRepository.getAll());
+// Set up the search filter
+pokemonRepository.filterPokemonList();
+
+// Iterate over each Pokémon in the repository using forEach and getAll functions
+pokemonRepository.getAll().forEach(pokemon => {
+    // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
+    if (pokemon.height > 1.0) {
+        // If the height is greater than 1.0, add the special note "Wow, that's big!"
+        document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big!<br>");
+    } else {
+        // Otherwise, just display the Pokémon's name and height
+        document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
+    }
+});

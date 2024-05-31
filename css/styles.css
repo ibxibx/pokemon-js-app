@@ -93,6 +93,7 @@ body {
 /* Styles for the Pokemon button */
 .pokemon-button {
   width: 100%;
+  max-width: 200px; /* Limit the width of the button */
   box-sizing: border-box;
   background-color: #f8d030;
   border: none;
@@ -102,7 +103,6 @@ body {
   cursor: pointer;
   font-size: 16px;
   color: #383838;
- 
 }
 
 .pokemon-button:hover {
@@ -132,6 +132,11 @@ ul#pokemonList li {
     width: 100%;
     height: auto;
   }
+
+  .pokemon-button {
+    max-width: 100%; /* Adjust the max-width for smaller screens */
+  }
+
 }
 
 /* Media query for small mobile screens */
@@ -162,4 +167,9 @@ ul#pokemonList li {
   .pokemon-list li {
     padding: 3px 0;
   }
+
+  .pokemon-button {
+    font-size: 14px; /* Decrease font size for smaller screens */
+  }
+  
 }

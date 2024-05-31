@@ -45,40 +45,47 @@ let pokemonRepository = (function () {
         });
     }
 
+    // Function to create and append a list item for a Pokémon button
+    function addListItem(pokemon) {
+        // Select the UL element where the Pokémon list will be displayed
+        let pokemonListElement = document.querySelector('#pokemonList');
+        
+        // Create a list item for each Pokémon
+        let listItem = document.createElement('li');
+
+        // Create a button for each Pokémon
+        let button = document.createElement('button');
+        button.innerText = pokemon.name;
+
+        // Add a class to the button
+        button.classList.add('pokemon-button');
+
+        // Append the button to the list item
+        listItem.appendChild(button);
+
+        // Append the list item to the UL element
+        pokemonListElement.appendChild(listItem);
+
+        // Add a click event to display Pokémon details
+        button.addEventListener('click', () => {
+            displayPokemonDetails(pokemon);
+        });
+    }
+
     // Return an object containing only the required public functions
     return {
         getAll: getAll,
         add: add,
         displayPokemonDetails: displayPokemonDetails,
-        filterPokemonList: filterPokemonList
+        filterPokemonList: filterPokemonList,
+        addListItem: addListItem
     };
 })();
 
 // Iterate over each Pokémon in the repository using forEach and getAll functions
 pokemonRepository.getAll().forEach(pokemon => {
-    // Select the UL element where the Pokémon list will be displayed
-    let pokemonListElement = document.querySelector('#pokemonList');
-    
-    // Create a list item for each Pokémon
-    let listItem = document.createElement('li');
-
-    // Create a button for each Pokémon
-    let button = document.createElement('button');
-    button.innerText = pokemon.name;
-
-    // Add a class to the button
-    button.classList.add('pokemon-button');
-
-    // Append the button to the list item
-    listItem.appendChild(button);
-
-    // Append the list item to the UL element
-    pokemonListElement.appendChild(listItem);
-
-    // Add a click event to display Pokémon details
-    button.addEventListener('click', () => {
-        pokemonRepository.displayPokemonDetails(pokemon);
-    });
+    // Call the addListItem function to create and append a list item for each Pokémon
+    pokemonRepository.addListItem(pokemon);
 });
 
 // Set up the search filter

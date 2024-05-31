@@ -27,7 +27,8 @@ body {
 }
 
 .header img {
-  height: 40px; /* Adjust the logo height to fit within the 50px stripe with padding */
+  height: 40px;
+  /* Adjust the logo height to fit within the 50px stripe with padding */
   padding: 5px;
   position: absolute;
   left: 5px;
@@ -84,43 +85,78 @@ body {
   display: none;
 }
 
+/* Buttons */
+.pokemon-button {
+  background-color: #ffcc00;
+  /* Custom background color */
+  border: none;
+  /* Remove border */
+  color: #333;
+  /* Text color */
+  padding: 10px 20px;
+  /* Padding */
+  text-align: center;
+  /* Center text */
+  text-decoration: none;
+  /* Remove text decoration */
+  display: inline-block;
+  /* Inline-block display */
+  font-size: 16px;
+  /* Font size */
+  margin: 4px 2px;
+  /* Margin */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  border-radius: 5px;
+  /* Rounded corners */
+  transition: background-color 0.3s ease;
+  /* Smooth background color transition */
+}
+
+.pokemon-button:hover {
+  background-color: #ff9900;
+  /* Background color on hover */
+}
+
 /* Media query for tablets */
 @media (max-width: 768px) {
   .main-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
-  .sidebar, .content {
-      width: 100%;
-      height: auto;
+  .sidebar,
+  .content {
+    width: 100%;
+    height: auto;
   }
 }
 
 /* Media query for small mobile screens */
 @media (max-width: 480px) {
   .header {
-      padding: 5px;
+    padding: 5px;
   }
 
   .header img {
-      width: auto;
-      height: 40px; /* Maintain the height adjustment */
-      left: 5px;
+    width: auto;
+    height: 40px;
+    /* Maintain the height adjustment */
+    left: 5px;
   }
 
   .sidebar {
-      padding: 10px;
+    padding: 10px;
   }
 
   .content {
-      padding: 10px;
+    padding: 10px;
   }
 
   .search-bar {
-      padding: 5px;
+    padding: 5px;
   }
 
   .pokemon-list li {
-      padding: 3px 0;
+    padding: 3px 0;
   }
 }

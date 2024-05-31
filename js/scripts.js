@@ -49,7 +49,7 @@ let pokemonRepository = (function () {
     function addListItem(pokemon) {
         // Select the UL element where the Pokémon list will be displayed
         let pokemonListElement = document.querySelector('#pokemonList');
-        
+
         // Create a list item for each Pokémon
         let listItem = document.createElement('li');
 
@@ -66,9 +66,10 @@ let pokemonRepository = (function () {
         // Append the list item to the UL element
         pokemonListElement.appendChild(listItem);
 
-        // Add a click event to display Pokémon details
+        // Add a click event to display Pokémon details and log to the console
         button.addEventListener('click', () => {
             displayPokemonDetails(pokemon);
+            console.log(pokemon);  // Log the Pokémon object to the console
         });
     }
 

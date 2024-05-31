@@ -70,13 +70,6 @@ body {
   text-decoration: underline;
 }
 
-.search-bar {
-  margin-bottom: 20px;
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
 .pokemon-details img {
   max-width: 100%;
 }
@@ -85,37 +78,48 @@ body {
   display: none;
 }
 
-/* Buttons */
-.pokemon-button {
-  background-color: #fde090;
-  /* Custom background color */
-  border: none;
-  /* Remove border */
-  color: #333;
-  /* Text color */
-  padding: 10px 20px;
-  /* Padding */
-  text-align: center;
-  /* Center text */
-  text-decoration: none;
-  /* Remove text decoration */
-  display: inline-block;
-  /* Inline-block display */
-  font-size: 16px;
-  /* Font size */
-  margin: 4px 2px;
-  /* Margin */
-  cursor: pointer;
-  /* Pointer cursor on hover */
+
+/* Styles for the search bar */
+#searchBar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  /* Rounded corners */
-  transition: background-color 0.3s ease;
-  /* Smooth background color transition */
+  font-size: 16px;
+}
+
+/* Styles for the Pokemon button */
+.pokemon-button {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f8d030;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
 }
 
 .pokemon-button:hover {
-  background-color: #a78fef;
-  /* Background color on hover */
+  background-color: #e8c020;
+}
+
+/* Ensure list items take the full width and have no extra padding or margins */
+ul#pokemonList {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul#pokemonList li {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 5px;
 }
 
 /* Media query for tablets */

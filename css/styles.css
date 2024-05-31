@@ -101,13 +101,12 @@ body {
   margin-bottom: 5px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
-  color: white;
-  text-transform: uppercase;
+  color: #383838;
+ 
 }
 
 .pokemon-button:hover {
-  background-color: #e8c020;
+  background-color: #a890f0;
 }
 
 /* Ensure list items take the full width and have no extra padding or margins */

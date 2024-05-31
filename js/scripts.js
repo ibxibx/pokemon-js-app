@@ -35,13 +35,18 @@ let pokemonRepository = (function () {
             // Create a button for each Pokémon
             let button = document.createElement('button');
             button.innerText = pokemon.name;
-            button.addEventListener('click', () => displayPokemonDetails(pokemon));
+
+            // Add a class to the button
+            button.classList.add('pokemon-button');
 
             // Append the button to the list item
             listItem.appendChild(button);
 
             // Append the list item to the UL element
             pokemonListElement.appendChild(listItem);
+
+            // Add a click event to display Pokémon details
+            button.addEventListener('click', () => displayPokemonDetails(pokemon));
         });
     }
 
@@ -83,13 +88,16 @@ pokemonRepository.filterPokemonList();
 pokemonRepository.getAll().forEach(pokemon => {
     // Select the UL element where the Pokémon list will be displayed
     let pokemonListElement = document.querySelector('#pokemonList');
-
+    
     // Create a list item for each Pokémon
     let listItem = document.createElement('li');
 
     // Create a button for each Pokémon
     let button = document.createElement('button');
     button.innerText = pokemon.name;
+
+    // Add a class to the button
+    button.classList.add('pokemon-button');
 
     // Append the button to the list item
     listItem.appendChild(button);

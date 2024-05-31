@@ -91,13 +91,3 @@ pokemonRepository.getAll().forEach(pokemon => {
 
 // Set up the search filter
 pokemonRepository.filterPokemonList();
-
-
-    // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
-    // if (pokemon.height > 1.0) {
-    // If the height is greater than 1.0, add the special note "Wow, that's big!"
-    // document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big!<br>");
-    // } else {
-    // Otherwise, just display the Pokémon's name and height
-    // document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
-    // }

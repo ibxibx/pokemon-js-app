@@ -25,32 +25,7 @@ let pokemonRepository = (function () {
         }
     }
 
-    // Function to display the Pokémon list
-    function displayPokemonList(pokemonArray) {
-        const pokemonListElement = document.getElementById('pokemonList');
-        pokemonListElement.innerHTML = '';
-        pokemonArray.forEach(pokemon => {
-            let listItem = document.createElement('li');
-
-            // Create a button for each Pokémon
-            let button = document.createElement('button');
-            button.innerText = pokemon.name;
-
-            // Add a class to the button
-            button.classList.add('pokemon-button');
-
-            // Append the button to the list item
-            listItem.appendChild(button);
-
-            // Append the list item to the UL element
-            pokemonListElement.appendChild(listItem);
-
-            // Add a click event to display Pokémon details
-            button.addEventListener('click', () => displayPokemonDetails(pokemon));
-        });
-    }
-
-    // Function to display Pokémon details
+    // Function to display the Pokémon details
     function displayPokemonDetails(pokemon) {
         const pokemonDetailsElement = document.getElementById('pokemonDetails');
         document.getElementById('pokemonName').textContent = pokemon.name;
@@ -65,6 +40,7 @@ let pokemonRepository = (function () {
         searchBar.addEventListener('keyup', () => {
             const searchText = searchBar.value.toLowerCase();
             const filteredPokemon = pokemonList.filter(pokemon => pokemon.name.toLowerCase().includes(searchText));
+            // Use the custom forEach loop to display the filtered list
             displayPokemonList(filteredPokemon);
         });
     }
@@ -73,16 +49,10 @@ let pokemonRepository = (function () {
     return {
         getAll: getAll,
         add: add,
-        displayPokemonList: displayPokemonList,
-        filterPokemonList: filterPokemonList,
-        displayPokemonDetails: displayPokemonDetails
+        displayPokemonDetails: displayPokemonDetails,
+        filterPokemonList: filterPokemonList
     };
 })();
-
-// Initial display of the Pokémon list
-pokemonRepository.displayPokemonList(pokemonRepository.getAll());
-// Set up the search filter
-pokemonRepository.filterPokemonList();
 
 // Iterate over each Pokémon in the repository using forEach and getAll functions
 pokemonRepository.getAll().forEach(pokemon => {
@@ -109,6 +79,10 @@ pokemonRepository.getAll().forEach(pokemon => {
     button.addEventListener('click', () => {
         pokemonRepository.displayPokemonDetails(pokemon);
     });
+});
+
+// Set up the search filter
+pokemonRepository.filterPokemonList();
 
     // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
     // if (pokemon.height > 1.0) {
@@ -118,4 +92,3 @@ pokemonRepository.getAll().forEach(pokemon => {
     // Otherwise, just display the Pokémon's name and height
     // document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
     // }
-});

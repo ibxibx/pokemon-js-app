@@ -73,6 +73,21 @@ pokemonRepository.filterPokemonList();
 
 // Iterate over each Pokémon in the repository using forEach and getAll functions
 pokemonRepository.getAll().forEach(pokemon => {
+    // Select the UL element where the Pokémon list will be displayed
+    let pokemonListElement = document.querySelector('#pokemonList');
+    
+    // Create a list item for each Pokémon
+    let listItem = document.createElement('li');
+    listItem.textContent = pokemon.name;
+
+    // Append the list item to the UL element
+    pokemonListElement.appendChild(listItem);
+
+    // Add a click event to display Pokémon details
+    listItem.addEventListener('click', () => {
+        pokemonRepository.displayPokemonDetails(pokemon);
+    });
+
     // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
     if (pokemon.height > 1.0) {
         // If the height is greater than 1.0, add the special note "Wow, that's big!"

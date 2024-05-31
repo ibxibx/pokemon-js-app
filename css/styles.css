@@ -135,6 +135,7 @@ ul#pokemonList li {
 
   .pokemon-button {
     max-width: 100%; /* Adjust the max-width for smaller screens */
+    max-width: calc(100% - 20px); /* Limit the button width to fit within the screen */
   }
 
 }
@@ -170,6 +171,7 @@ ul#pokemonList li {
 
   .pokemon-button {
     font-size: 14px; /* Decrease font size for smaller screens */
+    max-width: calc(100% - 20px); /* Limit the button width to fit within the screen */
   }
-  
+
 }

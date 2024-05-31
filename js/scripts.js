@@ -31,8 +31,16 @@ let pokemonRepository = (function () {
         pokemonListElement.innerHTML = '';
         pokemonArray.forEach(pokemon => {
             let listItem = document.createElement('li');
-            listItem.textContent = pokemon.name;
-            listItem.addEventListener('click', () => displayPokemonDetails(pokemon));
+
+            // Create a button for each Pokémon
+            let button = document.createElement('button');
+            button.innerText = pokemon.name;
+            button.addEventListener('click', () => displayPokemonDetails(pokemon));
+
+            // Append the button to the list item
+            listItem.appendChild(button);
+
+            // Append the list item to the UL element
             pokemonListElement.appendChild(listItem);
         });
     }
@@ -75,25 +83,31 @@ pokemonRepository.filterPokemonList();
 pokemonRepository.getAll().forEach(pokemon => {
     // Select the UL element where the Pokémon list will be displayed
     let pokemonListElement = document.querySelector('#pokemonList');
-    
+
     // Create a list item for each Pokémon
     let listItem = document.createElement('li');
-    listItem.textContent = pokemon.name;
+
+    // Create a button for each Pokémon
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+
+    // Append the button to the list item
+    listItem.appendChild(button);
 
     // Append the list item to the UL element
     pokemonListElement.appendChild(listItem);
 
     // Add a click event to display Pokémon details
-    listItem.addEventListener('click', () => {
+    button.addEventListener('click', () => {
         pokemonRepository.displayPokemonDetails(pokemon);
     });
 
     // Check if the Pokémon's height is above a certain value (e.g., 1.0 meters)
-    //if (pokemon.height > 1.0) {
-        // If the height is greater than 1.0, add the special note "Wow, that's big!"
-       // document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big!<br>");
-    //} else {
-        // Otherwise, just display the Pokémon's name and height
-        //document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
-    //}
+    // if (pokemon.height > 1.0) {
+    // If the height is greater than 1.0, add the special note "Wow, that's big!"
+    // document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big!<br>");
+    // } else {
+    // Otherwise, just display the Pokémon's name and height
+    // document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
+    // }
 });

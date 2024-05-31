@@ -87,7 +87,7 @@ body {
 
 /* Buttons */
 .pokemon-button {
-  background-color: #ffcc00;
+  background-color: ffce31;
   /* Custom background color */
   border: none;
   /* Remove border */
@@ -114,7 +114,7 @@ body {
 }
 
 .pokemon-button:hover {
-  background-color: #ff9900;
+  background-color: #a78fef;
   /* Background color on hover */
 }
 

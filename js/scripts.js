@@ -7,8 +7,9 @@ let pokemonRepository = (function () {
     return fetch(url).then(response => response.json());
   }
 
-  // Function to load the complete list of Pokémon
+  // Function to load the complete list of Pokémon with Loading Status Message
   function loadList() {
+    showLoadingMessage();
     return loadDataFromExternalSource(apiUrl)
       .then(data => {
         data.results.forEach(item => {
@@ -18,19 +19,38 @@ let pokemonRepository = (function () {
           };
           add(pokemon);
         });
+        hideLoadingMessage();
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        hideLoadingMessage();
+      });
   }
 
-  // Function to load Pokémon details
+  function showLoadingMessage() {
+    const loadingMessageElement = document.getElementById('loadingMessage');
+    loadingMessageElement.textContent = 'Loading...';
+  }
+
+  function hideLoadingMessage() {
+    const loadingMessageElement = document.getElementById('loadingMessage');
+    loadingMessageElement.textContent = '';
+  }
+
+  // Function to load Pokémon details with Loading Status Message
   function loadDetails(pokemon) {
+    showLoadingMessage();
     return loadDataFromExternalSource(pokemon.detailsUrl)
       .then(details => {
         pokemon.imgUrl = details.sprites.front_default;
         pokemon.height = details.height;
+        hideLoadingMessage();
         return pokemon;
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        hideLoadingMessage();
+      });
   }
 
   // Function to return all items

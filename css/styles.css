@@ -5,7 +5,6 @@ primary-color: #eeeeee;       // Light Gray
 secondary-color: #a040a0;     // Violet
 text-primary-color: #333333;  // Black
 text-secondary-color: #666666;// Dark Gray
- 
 */
 
 :root {
@@ -28,7 +27,6 @@ body {
 
 .header img {
   height: 40px;
-  /* Adjust the logo height to fit within the 50px stripe with padding */
   padding: 5px;
   position: absolute;
   left: 5px;
@@ -38,22 +36,18 @@ body {
 
 .main-container {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
   height: calc(100vh - 50px);
 }
 
 .sidebar {
-  width: 30%;
+  width: 50%;
   padding: 20px;
   background-color: #f4f4f4;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-}
-
-.content {
-  width: 70%;
-  padding: 20px;
-  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .pokemon-list {
@@ -70,15 +64,6 @@ body {
   text-decoration: underline;
 }
 
-.pokemon-details img {
-  max-width: 100%;
-}
-
-.pokemon-details {
-  display: none;
-}
-
-
 /* Styles for the search bar */
 #searchBar {
   width: 100%;
@@ -93,14 +78,12 @@ body {
 /* Styles for the Pokemon button */
 .pokemon-button {
   width: 100%;
-  max-width: 200px;
-  /* Limit the width of the button */
   box-sizing: border-box;
   background-color: #f8d030;
   border: none;
   border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 5px;
+  padding: 20px; /* Increased padding for longer buttons */
+  margin-bottom: 10px;
   cursor: pointer;
   font-size: 16px;
   color: #383838;
@@ -119,68 +102,10 @@ ul#pokemonList {
 ul#pokemonList li {
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-/* Media query for tablets */
-@media (max-width: 768px) {
-  .main-container {
-    flex-direction: column;
-  }
-
-  .sidebar,
-  .content {
-    width: 100%;
-    height: auto;
-  }
-
-  .pokemon-button {
-    max-width: 100%;
-    /* Adjust the max-width for smaller screens */
-    max-width: calc(100% - 20px);
-    /* Limit the button width to fit within the screen */
-  }
-
-}
-
-/* Media query for small mobile screens */
-@media (max-width: 480px) {
-  .header {
-    padding: 5px;
-  }
-
-  .header img {
-    width: auto;
-    height: 40px;
-    /* Maintain the height adjustment */
-    left: 5px;
-  }
-
-  .sidebar {
-    padding: 10px;
-  }
-
-  .content {
-    padding: 10px;
-  }
-
-  .search-bar {
-    padding: 5px;
-  }
-
-  .pokemon-list li {
-    padding: 3px 0;
-  }
-
-  .pokemon-button {
-    font-size: 14px;
-    /* Decrease font size for smaller screens */
-    max-width: calc(100% - 20px);
-    /* Limit the button width to fit within the screen */
-  }
-
-}
-
+/* Modal Styles */
 #modal-container {
   display: none;
 }
@@ -231,4 +156,54 @@ ul#pokemonList li {
 
 .modal p {
   margin-bottom: 0;
+}
+
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .pokemon-button {
+    max-width: 100%;
+    /* Adjust the max-width for smaller screens */
+  }
+}
+
+/* Media query for small mobile screens */
+@media (max-width: 480px) {
+  .header {
+    padding: 5px;
+  }
+
+  .header img {
+    width: auto;
+    height: 40px;
+    /* Maintain the height adjustment */
+    left: 5px;
+  }
+
+  .sidebar {
+    padding: 10px;
+  }
+
+  .search-bar {
+    padding: 5px;
+  }
+
+  .pokemon-list li {
+    padding: 3px 0;
+  }
+
+  .pokemon-button {
+    font-size: 14px;
+    /* Decrease font size for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
 }

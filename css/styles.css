@@ -67,10 +67,28 @@ body {
   justify-content: center;
 }
 
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Full viewport height */
+  margin: 0;
+}
+
+.modal-content {
+  border: 20px solid white; /* White frame around the modal */
+  max-width: 500px; /* Set the desired width */
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
 .modal {
   background: #fff;
-  padding: 20px;
-  max-width: 80%; /* Adjust modal width as needed */
   text-align: center;
   border-radius: 5px;
 }

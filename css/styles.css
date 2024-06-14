@@ -1,6 +1,7 @@
 /* Styles */
 :root {
-  --font-family_2: 'Roboto Flex', sans-serif; /* Corrected font stack */
+  --font-family_2: 'Roboto Flex', sans-serif;
+  /* Corrected font stack */
 }
 
 body {
@@ -13,7 +14,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: calc(100vh - 50px); /* Ensure minimum height */
+  min-height: calc(100vh - 50px);
+  /* Ensure minimum height */
+}
+
+/* Style the h1 element to look like an h5 */
+.modal-title {
+  font-size: 1.25rem;
+  /* Equivalent to h5 size in Bootstrap */
+  font-weight: 500;
+  /* Equivalent to h5 weight in Bootstrap */
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
 .sidebar {
@@ -42,6 +54,11 @@ body {
   color: #383838;
   transition: background-color 0.3s ease;
   text-align: left;
+}
+
+.btn-primary {
+  background-color: #0072ee !important;
+  border-color: #0072ee !important;
 }
 
 /* List Styles */
@@ -79,6 +96,7 @@ ul#pokemonList li {
 
   .pokemon-button {
     font-size: 14px;
-    padding: 12px; /* Adjust padding for smaller screens */
+    padding: 12px;
+    /* Adjust padding for smaller screens */
   }
 }

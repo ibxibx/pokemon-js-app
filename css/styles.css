@@ -56,10 +56,7 @@ body {
   text-align: left;
 }
 
-.btn-primary {
-  background-color: #0072ee !important;
-  border-color: #0072ee !important;
-}
+ 
 
 /* List Styles */
 ul#pokemonList {

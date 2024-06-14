@@ -42,6 +42,20 @@ body {
   color: #007bff;
 }
 
+/* Custom button styles */
+.pokemon-button {
+  background-color: #0072ee; /* Default background color */
+  color: white; /* Default text color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  padding: 10px 20px; /* Adjust padding as needed */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.pokemon-button:hover {
+  background-color: #5c14a4; /* Hover background color */
+}
+
 /* Button Styles */
 .pokemon-button {
   width: 100%;

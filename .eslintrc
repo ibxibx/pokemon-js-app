@@ -7,6 +7,15 @@
         "eslint:recommended"
     ],
     "rules": {
-        "quotes": ["error", "single"]
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "no-console": "warn",
+        "eqeqeq": ["error", "always"],
+        "curly": ["error", "all"],
+        "no-unused-vars": ["warn"],
+        "indent": ["error", 2],
+        "comma-dangle": ["error", "never"],
+        "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "prefer-const": ["error"]
     }
 }

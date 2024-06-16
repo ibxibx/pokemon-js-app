@@ -1,33 +1,27 @@
-/* Styles */
 :root {
   --font-family_2: "Roboto Flex", sans-serif;
-  /* Corrected font stack */
 }
-
 body {
   font-family: var(--font-family_2);
   background-color: #f8f9fa;
   margin: 0;
 }
-
 .main-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: calc(100vh - 50px);
-  /* Ensure minimum height */
 }
-
-/* Style the h1 element to look like an h5 */
 .modal-title {
   font-size: 1.25rem;
-  /* Equivalent to h5 size in Bootstrap */
   font-weight: 500;
-  /* Equivalent to h5 weight in Bootstrap */
   margin-bottom: 0.5rem;
   line-height: 1.2;
 }
-
+.pokemon-button,
+ul#pokemonList li {
+  margin-bottom: 10px;
+}
 .sidebar {
   width: 50%;
   padding: 20px;
@@ -36,82 +30,53 @@ body {
   overflow-y: auto;
   box-sizing: border-box;
 }
-
 #loadingMessage {
   font-size: 20px;
   color: #007bff;
 }
-
-/* Custom button styles */
 .pokemon-button {
-  background-color: #0072ee; /* Default background color */
-  color: white !important; /* Text color with !important to ensure it overrides */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Optional: Add rounded corners */
-  padding: 15px; /* Adjust padding */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  width: 100%; /* Full width */
-  text-align: center; /* Center text */
-  font-weight: bold; /* Bold font */
-}
-
-.pokemon-button:hover {
-  background-color: #5c14a4; /* Hover background color */
-}
-
-/* Button Styles */
-.pokemon-button {
+  background-color: #0072ee;
+  color: #fff !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
   width: 100%;
   border: none;
   border-radius: 5px;
   padding: 15px;
-  margin-bottom: 10px;
   cursor: pointer;
   font-size: 16px;
-  color: #383838;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
   text-align: left;
 }
-
-/* List Styles */
+.pokemon-button:hover {
+  background-color: #5c14a4;
+}
 ul#pokemonList {
   list-style-type: none;
   padding: 0;
 }
-
-ul#pokemonList li {
-  margin-bottom: 10px;
-}
-
-/* Media Queries */
 @media (max-width: 768px) {
   .main-container {
     flex-direction: column;
     align-items: center;
   }
-
   .sidebar {
     width: 100%;
     height: auto;
     padding: 10px;
   }
-
   .pokemon-button {
     max-width: 100%;
   }
 }
-
 @media (max-width: 480px) {
   .sidebar {
     padding: 10px;
   }
-
   .pokemon-button {
     font-size: 14px;
     padding: 12px;
-    /* Adjust padding for smaller screens */
   }
 }

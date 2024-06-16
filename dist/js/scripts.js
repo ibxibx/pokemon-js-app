@@ -1,150 +1,116 @@
 let pokemonRepository = (function () {
-  let pokemonList = [];
-
-  function fetchData(url) {
-    return fetch(url).then((response) => response.json());
+  let e = [];
+  function t(e) {
+    return fetch(e).then((e) => e.json());
   }
-
-  function showLoadingMessage() {
-    let loadingMessage = document.getElementById("loadingMessage");
-    loadingMessage.textContent = "Loading...";
+  function o() {
+    document.getElementById("loadingMessage").textContent = "Loading...";
   }
-
-  function hideLoadingMessage() {
-    let loadingMessage = document.getElementById("loadingMessage");
-    loadingMessage.textContent = "";
+  function n() {
+    document.getElementById("loadingMessage").textContent = "";
   }
-
-  function loadPokemonDetails(pokemon) {
-    showLoadingMessage();
-    return fetchData(pokemon.detailsUrl)
-      .then((details) => {
-        pokemon.imgUrl = details.sprites.front_default;
-        pokemon.height = details.height;
-        hideLoadingMessage();
-        return pokemon;
-      })
-      .catch((error) => {
-        console.error(error);
-        hideLoadingMessage();
+  function r(e) {
+    return (
+      o(),
+      t(e.detailsUrl)
+        .then(
+          (t) => (
+            (e.imgUrl = t.sprites.front_default), (e.height = t.height), n(), e
+          )
+        )
+        .catch((e) => {
+          console.error(e), n();
+        })
+    );
+  }
+  function i() {
+    return e;
+  }
+  function l(t) {
+    "object" == typeof t
+      ? e.push(t)
+      : console.error("Error: Only objects can be added to the pokemonList.");
+  }
+  function a(e) {
+    console.log("Showing details for:", e.name),
+      r(e).then((e) => {
+        let t = document.getElementById("modalTitle"),
+          o = document.getElementById("modalText"),
+          n = document.getElementById("modalImg");
+        (t.innerText = d(e.name)),
+          (o.innerText = `Height: ${e.height / 10} m`),
+          n.setAttribute("src", e.imgUrl),
+          $("#pokemonModal").modal("show");
       });
   }
-
-  function getAll() {
-    return pokemonList;
-  }
-
-  function add(pokemon) {
-    if (typeof pokemon === "object") {
-      pokemonList.push(pokemon);
-    } else {
-      console.error("Error: Only objects can be added to the pokemonList.");
-    }
-  }
-
-  function showPokemonDetails(pokemon) {
-    console.log("Showing details for:", pokemon.name);
-    loadPokemonDetails(pokemon).then((pokemon) => {
-      let modalTitle = document.getElementById("modalTitle");
-      let modalText = document.getElementById("modalText");
-      let modalImg = document.getElementById("modalImg");
-
-      modalTitle.innerText = capitalizeFirstLetter(pokemon.name);
-      modalText.innerText = `Height: ${pokemon.height / 10} m`;
-      modalImg.setAttribute("src", pokemon.imgUrl);
-
-      $("#pokemonModal").modal("show");
-    });
-  }
-
-  function addListItem(pokemon) {
-    let pokemonListElement = document.querySelector("#pokemonList");
-    let listItem = document.createElement("li");
-    listItem.classList.add("list-group-item");
-
-    let button = document.createElement("button");
-    button.innerText = capitalizeFirstLetter(pokemon.name);
-    button.classList.add("pokemon-button");
-    button.setAttribute("data-toggle", "modal");
-    button.setAttribute("data-target", "#pokemonModal");
-
-    listItem.appendChild(button);
-    pokemonListElement.appendChild(listItem);
-
-    button.addEventListener("click", function () {
-      showPokemonDetails(pokemon);
-    });
-  }
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  function loadPokemonList() {
-    showLoadingMessage();
-    return fetchData("https://pokeapi.co/api/v2/pokemon/?limit=150")
-      .then((response) => {
-        response.results.forEach((pokemon) => {
-          add({ name: pokemon.name, detailsUrl: pokemon.url });
-        });
-        hideLoadingMessage();
-      })
-      .catch((error) => {
-        console.error(error);
-        hideLoadingMessage();
+  function s(e) {
+    let t = document.querySelector("#pokemonList"),
+      o = document.createElement("li");
+    o.classList.add("list-group-item");
+    let n = document.createElement("button");
+    (n.innerText = d(e.name)),
+      n.classList.add("pokemon-button"),
+      n.setAttribute("data-toggle", "modal"),
+      n.setAttribute("data-target", "#pokemonModal"),
+      o.appendChild(n),
+      t.appendChild(o),
+      n.addEventListener("click", function () {
+        a(e);
       });
   }
-
-  function filterPokemonList() {
-    let searchBar = document.getElementById("searchBar");
-    searchBar.addEventListener("keyup", () => {
-      let searchText = searchBar.value.toLowerCase();
-      let filteredPokemon = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchText)
-      );
-      renderPokemonList(filteredPokemon);
-    });
+  function d(e) {
+    return e.charAt(0).toUpperCase() + e.slice(1);
   }
-
-  function renderPokemonList(pokemonList) {
-    let pokemonListElement = document.querySelector("#pokemonList");
-    pokemonListElement.innerHTML = "";
-
-    pokemonList.forEach((pokemon) => {
-      addListItem(pokemon);
-    });
-  }
-
   return {
-    getAll: getAll,
-    add: add,
-    filterPokemonList: filterPokemonList,
-    addListItem: addListItem,
+    getAll: i,
+    add: l,
+    filterPokemonList: function t() {
+      let o = document.getElementById("searchBar");
+      o.addEventListener("keyup", () => {
+        var t;
+        let n = o.value.toLowerCase();
+        (t = e.filter((e) => e.name.toLowerCase().includes(n))),
+          (document.querySelector("#pokemonList").innerHTML = ""),
+          t.forEach((e) => {
+            s(e);
+          });
+      });
+    },
+    addListItem: s,
     loadList: function () {
-      return loadPokemonList();
+      return (
+        o(),
+        t("https://pokeapi.co/api/v2/pokemon/?limit=150")
+          .then((e) => {
+            e.results.forEach((e) => {
+              l({ name: e.name, detailsUrl: e.url });
+            }),
+              n();
+          })
+          .catch((e) => {
+            console.error(e), n();
+          })
+      );
     },
-    loadDetails: function (pokemon) {
-      return loadPokemonDetails(pokemon);
+    loadDetails: function (e) {
+      return r(e);
     },
-    showDetails: function (pokemon) {
-      return showPokemonDetails(pokemon);
+    showDetails: function (e) {
+      return a(e);
     },
   };
 })();
-
 pokemonRepository
   .loadList()
+  .then(() =>
+    Promise.all(
+      pokemonRepository.getAll().map((e) => pokemonRepository.loadDetails(e))
+    )
+  )
   .then(() => {
-    let pokemonPromises = pokemonRepository
-      .getAll()
-      .map((pokemon) => pokemonRepository.loadDetails(pokemon));
-    return Promise.all(pokemonPromises);
-  })
-  .then(() => {
-    pokemonRepository.getAll().forEach((pokemon) => {
-      pokemonRepository.addListItem(pokemon);
+    pokemonRepository.getAll().forEach((e) => {
+      pokemonRepository.addListItem(e);
     });
   })
-  .catch((error) => console.error(error));
-
-pokemonRepository.filterPokemonList();
+  .catch((e) => console.error(e)),
+  pokemonRepository.filterPokemonList();

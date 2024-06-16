@@ -1,6 +1,6 @@
 /* Styles */
 :root {
-  --font-family_2: 'Roboto Flex', sans-serif;
+  --font-family_2: "Roboto Flex", sans-serif;
   /* Corrected font stack */
 }
 
@@ -45,11 +45,17 @@ body {
 /* Custom button styles */
 .pokemon-button {
   background-color: #0072ee; /* Default background color */
-  color: white; /* Default text color */
+  color: white !important; /* Text color with !important to ensure it overrides */
   border: none; /* Remove default border */
   border-radius: 5px; /* Optional: Add rounded corners */
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding: 15px; /* Adjust padding */
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%; /* Full width */
+  text-align: center; /* Center text */
+  font-weight: bold; /* Bold font */
 }
 
 .pokemon-button:hover {
@@ -69,8 +75,6 @@ body {
   transition: background-color 0.3s ease;
   text-align: left;
 }
-
- 
 
 /* List Styles */
 ul#pokemonList {

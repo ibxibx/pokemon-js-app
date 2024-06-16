@@ -1,119 +1,150 @@
 let pokemonRepository = (function () {
-  let e = [];
-  function t(e) {
-    return fetch(e).then((e) => e.json());
+  let pokemonList = [];
+
+  function fetchData(url) {
+    return fetch(url).then((response) => response.json());
   }
-  function o() {
-    let e = document.getElementById("loadingMessage");
-    e.textContent = "Loading...";
+
+  function showLoadingMessage() {
+    let loadingMessage = document.getElementById("loadingMessage");
+    loadingMessage.textContent = "Loading...";
   }
-  function n() {
-    let e = document.getElementById("loadingMessage");
-    e.textContent = "";
+
+  function hideLoadingMessage() {
+    let loadingMessage = document.getElementById("loadingMessage");
+    loadingMessage.textContent = "";
   }
-  function r(e) {
-    return (
-      o(),
-      t(e.detailsUrl)
-        .then(
-          (t) => (
-            (e.imgUrl = t.sprites.front_default), (e.height = t.height), n(), e
-          )
-        )
-        .catch((e) => {
-          console.error(e), n();
-        })
-    );
-  }
-  function i() {
-    return e;
-  }
-  function l(t) {
-    "object" == typeof t
-      ? e.push(t)
-      : console.error("Error: Only objects can be added to the pokemonList.");
-  }
-  function a(e) {
-    console.log("Showing details for:", e.name),
-      r(e).then(function (e) {
-        var t, o, n;
-        (t = e.name),
-          (o = `Height: ${e.height / 10} m`),
-          (n = e.imgUrl),
-          console.log("Showing modal for:", t),
-          (document.getElementById("modalTitle").innerText = d(t)),
-          (document.getElementById("modalText").innerText = o),
-          document.getElementById("modalImg").setAttribute("src", n),
-          $("#pokemonModal").modal("show");
+
+  function loadPokemonDetails(pokemon) {
+    showLoadingMessage();
+    return fetchData(pokemon.detailsUrl)
+      .then((details) => {
+        pokemon.imgUrl = details.sprites.front_default;
+        pokemon.height = details.height;
+        hideLoadingMessage();
+        return pokemon;
+      })
+      .catch((error) => {
+        console.error(error);
+        hideLoadingMessage();
       });
   }
-  function s(e) {
-    let t = document.querySelector("#pokemonList"),
-      o = document.createElement("li");
-    o.classList.add("list-group-item");
-    let n = document.createElement("button");
-    (n.innerText = d(e.name)),
-      n.classList.add("btn", "btn-primary", "pokemon-button"),
-      n.setAttribute("data-toggle", "modal"),
-      n.setAttribute("data-target", "#pokemonModal"),
-      o.appendChild(n),
-      t.appendChild(o),
-      n.addEventListener("click", () => {
-        a(e);
+
+  function getAll() {
+    return pokemonList;
+  }
+
+  function add(pokemon) {
+    if (typeof pokemon === "object") {
+      pokemonList.push(pokemon);
+    } else {
+      console.error("Error: Only objects can be added to the pokemonList.");
+    }
+  }
+
+  function showPokemonDetails(pokemon) {
+    console.log("Showing details for:", pokemon.name);
+    loadPokemonDetails(pokemon).then((pokemon) => {
+      let modalTitle = document.getElementById("modalTitle");
+      let modalText = document.getElementById("modalText");
+      let modalImg = document.getElementById("modalImg");
+
+      modalTitle.innerText = capitalizeFirstLetter(pokemon.name);
+      modalText.innerText = `Height: ${pokemon.height / 10} m`;
+      modalImg.setAttribute("src", pokemon.imgUrl);
+
+      $("#pokemonModal").modal("show");
+    });
+  }
+
+  function addListItem(pokemon) {
+    let pokemonListElement = document.querySelector("#pokemonList");
+    let listItem = document.createElement("li");
+    listItem.classList.add("list-group-item");
+
+    let button = document.createElement("button");
+    button.innerText = capitalizeFirstLetter(pokemon.name);
+    button.classList.add("pokemon-button");
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#pokemonModal");
+
+    listItem.appendChild(button);
+    pokemonListElement.appendChild(listItem);
+
+    button.addEventListener("click", function () {
+      showPokemonDetails(pokemon);
+    });
+  }
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  function loadPokemonList() {
+    showLoadingMessage();
+    return fetchData("https://pokeapi.co/api/v2/pokemon/?limit=150")
+      .then((response) => {
+        response.results.forEach((pokemon) => {
+          add({ name: pokemon.name, detailsUrl: pokemon.url });
+        });
+        hideLoadingMessage();
+      })
+      .catch((error) => {
+        console.error(error);
+        hideLoadingMessage();
       });
   }
-  function d(e) {
-    return e.charAt(0).toUpperCase() + e.slice(1);
-  }
-  return {
-    getAll: i,
-    add: l,
-    filterPokemonList: function t() {
-      let o = document.getElementById("searchBar");
-      o.addEventListener("keyup", () => {
-        let t = o.value.toLowerCase(),
-          n = e.filter((e) => e.name.toLowerCase().includes(t));
-        !(function e(t) {
-          let o = document.querySelector("#pokemonList");
-          (o.innerHTML = ""),
-            t.forEach((e) => {
-              s(e);
-            });
-        })(n);
-      });
-    },
-    addListItem: s,
-    loadList: function e() {
-      return (
-        o(),
-        t("https://pokeapi.co/api/v2/pokemon/?limit=150")
-          .then((e) => {
-            e.results.forEach((e) => {
-              l({ name: e.name, detailsUrl: e.url });
-            }),
-              n();
-          })
-          .catch((e) => {
-            console.error(e), n();
-          })
+
+  function filterPokemonList() {
+    let searchBar = document.getElementById("searchBar");
+    searchBar.addEventListener("keyup", () => {
+      let searchText = searchBar.value.toLowerCase();
+      let filteredPokemon = pokemonList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(searchText)
       );
+      renderPokemonList(filteredPokemon);
+    });
+  }
+
+  function renderPokemonList(pokemonList) {
+    let pokemonListElement = document.querySelector("#pokemonList");
+    pokemonListElement.innerHTML = "";
+
+    pokemonList.forEach((pokemon) => {
+      addListItem(pokemon);
+    });
+  }
+
+  return {
+    getAll: getAll,
+    add: add,
+    filterPokemonList: filterPokemonList,
+    addListItem: addListItem,
+    loadList: function () {
+      return loadPokemonList();
     },
-    loadDetails: r,
-    showDetails: a,
+    loadDetails: function (pokemon) {
+      return loadPokemonDetails(pokemon);
+    },
+    showDetails: function (pokemon) {
+      return showPokemonDetails(pokemon);
+    },
   };
 })();
+
 pokemonRepository
   .loadList()
   .then(() => {
-    let e = pokemonRepository
+    let pokemonPromises = pokemonRepository
       .getAll()
-      .map((e) => pokemonRepository.loadDetails(e));
-    return Promise.all(e);
+      .map((pokemon) => pokemonRepository.loadDetails(pokemon));
+    return Promise.all(pokemonPromises);
   })
   .then(() => {
-    pokemonRepository.getAll().forEach((e) => {
-      pokemonRepository.addListItem(e);
+    pokemonRepository.getAll().forEach((pokemon) => {
+      pokemonRepository.addListItem(pokemon);
     });
   })
-  .catch((e) => console.error(e)),
-  pokemonRepository.filterPokemonList();
+  .catch((error) => console.error(error));
+
+pokemonRepository.filterPokemonList();

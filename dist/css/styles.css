@@ -1,1 +1,113 @@
-let pokemonRepository=function(){let e=[];function t(e){return fetch(e).then(e=>e.json())}function o(){let e=document.getElementById("loadingMessage");e.textContent="Loading..."}function n(){let e=document.getElementById("loadingMessage");e.textContent=""}function r(e){return o(),t(e.detailsUrl).then(t=>(e.imgUrl=t.sprites.front_default,e.height=t.height,n(),e)).catch(e=>{console.error(e),n()})}function i(){return e}function l(t){"object"==typeof t?e.push(t):console.error("Error: Only objects can be added to the pokemonList.")}function a(e){console.log("Showing details for:",e.name),r(e).then(function(e){var t,o,n;t=e.name,o=`Height: ${e.height/10} m`,n=e.imgUrl,console.log("Showing modal for:",t),document.getElementById("modalTitle").innerText=d(t),document.getElementById("modalText").innerText=o,document.getElementById("modalImg").setAttribute("src",n),$("#pokemonModal").modal("show")})}function s(e){let t=document.querySelector("#pokemonList"),o=document.createElement("li");o.classList.add("list-group-item");let n=document.createElement("button");n.innerText=d(e.name),n.classList.add("btn","btn-primary","pokemon-button"),n.setAttribute("data-toggle","modal"),n.setAttribute("data-target","#pokemonModal"),o.appendChild(n),t.appendChild(o),n.addEventListener("click",()=>{a(e)})}function d(e){return e.charAt(0).toUpperCase()+e.slice(1)}return{getAll:i,add:l,filterPokemonList:function t(){let o=document.getElementById("searchBar");o.addEventListener("keyup",()=>{let t=o.value.toLowerCase(),n=e.filter(e=>e.name.toLowerCase().includes(t));!function e(t){let o=document.querySelector("#pokemonList");o.innerHTML="",t.forEach(e=>{s(e)})}(n)})},addListItem:s,loadList:function e(){return o(),t("https://pokeapi.co/api/v2/pokemon/?limit=150").then(e=>{e.results.forEach(e=>{l({name:e.name,detailsUrl:e.url})}),n()}).catch(e=>{console.error(e),n()})},loadDetails:r,showDetails:a}}();pokemonRepository.loadList().then(()=>{let e=pokemonRepository.getAll().map(e=>pokemonRepository.loadDetails(e));return Promise.all(e)}).then(()=>{pokemonRepository.getAll().forEach(e=>{pokemonRepository.addListItem(e)})}).catch(e=>console.error(e)),pokemonRepository.filterPokemonList();
+/* Styles */
+:root {
+  --font-family_2: 'Roboto Flex', sans-serif;
+  /* Corrected font stack */
+}
+
+body {
+  font-family: var(--font-family_2);
+  background-color: #f8f9fa;
+  margin: 0;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 50px);
+  /* Ensure minimum height */
+}
+
+/* Style the h1 element to look like an h5 */
+.modal-title {
+  font-size: 1.25rem;
+  /* Equivalent to h5 size in Bootstrap */
+  font-weight: 500;
+  /* Equivalent to h5 weight in Bootstrap */
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.sidebar {
+  width: 50%;
+  padding: 20px;
+  background-color: #f4f4f4;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+#loadingMessage {
+  font-size: 20px;
+  color: #007bff;
+}
+
+/* Custom button styles */
+.pokemon-button {
+  background-color: #0072ee; /* Default background color */
+  color: white; /* Default text color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  padding: 10px 20px; /* Adjust padding as needed */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.pokemon-button:hover {
+  background-color: #5c14a4; /* Hover background color */
+}
+
+/* Button Styles */
+.pokemon-button {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #383838;
+  transition: background-color 0.3s ease;
+  text-align: left;
+}
+
+ 
+
+/* List Styles */
+ul#pokemonList {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul#pokemonList li {
+  margin-bottom: 10px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .pokemon-button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 10px;
+  }
+
+  .pokemon-button {
+    font-size: 14px;
+    padding: 12px;
+    /* Adjust padding for smaller screens */
+  }
+}

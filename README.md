@@ -52,7 +52,7 @@ The application is fully responsive and tested across:
 - Alternative text for images
 
 ## 🌐 Deployment
-The application is deployed on GitHub Pages and can be accessed at [your-username.github.io/pokemon-js-app](https://your-username.github.io/pokemon-js-app)
+The application is deployed on GitHub Pages and can be accessed at [https://ibxibx.github.io/pokemon-js-app/](https://ibxibx.github.io/pokemon-js-app/)
 
 ## 🔜 Future Enhancements
 - Enhanced Pokémon profiles with additional API data

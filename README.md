@@ -1,5 +1,7 @@
 # Pokédex JavaScript App
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)]([https://mymdb-app.netlify.app/](https://ibxibx.github.io/pokemon-js-app/))
+
 ## Overview
 A dynamic web application built with HTML, CSS, and JavaScript that serves as a digital Pokédex, allowing users to browse and view detailed information about different Pokémon characters.
 

@@ -1,4 +1,4 @@
-# Pokédex JavaScript App
+# Pokédex - Pokemon Index App
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://ibxibx.github.io/pokemon-js-app/)
 
